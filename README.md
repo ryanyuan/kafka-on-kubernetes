@@ -16,7 +16,7 @@ three distinct services as well.
 
 ```
 $ kubectl create -f zookeeper-services.yaml
-$ kubectl create -f zookeeper-cluster.yaml
+$ kubectl create -f zookeeper-deployment.yaml
 ```
 
 After the Zookeeper cluster is launched, check that all three deployments are
@@ -24,18 +24,17 @@ After the Zookeeper cluster is launched, check that all three deployments are
 
 ```
 $ kubectl get pods
-NAME                           READY     STATUS    RESTARTS   AGE
-kafka-controller-gwjtt         1/1       Running   0          5m
-zookeeper-controller-1-qmpbx   1/1       Running   0          6m
-zookeeper-controller-2-9c8m6   1/1       Running   0          6m
-zookeeper-controller-3-8n6l6   1/1       Running   0          6m
+NAME                    READY     STATUS    RESTARTS   AGE
+zk-0-86c6b88498-z7g2z   1/1       Running   0          23s
+zk-1-56bbbdc769-ndfkb   1/1       Running   0          23s
+zk-2-7549c49f5b-4d9rl   1/1       Running   0          23s
 ```
 
 One of the zookeeper deployments should be `LEADING`, while the other two zookeeper controllers should be
 `FOLLOWERS`. To check that, look at the pod logs.
 
 ```
-$ kubectl logs zookeeper-controller-3-8n6l6
+$ kubectl logs zk-2-7549c49f5b-4d9rl
 ...
 2018-07-20 07:11:56,389 [myid:3] - INFO  [QuorumPeer[myid=3]/0:0:0:0:0:0:0:0:2181:Leader@371] - LEADING - LEADER ELECTION TOOK - 10863
 ```
@@ -85,15 +84,15 @@ value: mytopic:2:1
 ```
 
 Congrats! You have a working Kafka cluster running on Kubernetes. Next, a useful way to test your setup is via
-[`kafkacat`](https://github.com/edenhill/kafkacat). Once installed, you can
-publish to Kafka using the Kafka hostname from above:
+[`kafkacat`](https://github.com/edenhill/kafkacat). Once installed, you can be a pushlisher to
+publish messages to Kafka using the Kafka hostname from above:
 
 ```
 kafkacat -P -b 123.123.123.123:9092 -t mytopic
 ```
 
-And then to listen to it, type:
+And then to be a consumer to listen to it, type:
 
 ```
-kafkacat -b 123.123.123.123:9092 -t mytopic
+kafkacat -C -b 123.123.123.123:9092 -t mytopic
 ```
