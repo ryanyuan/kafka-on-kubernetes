@@ -89,7 +89,7 @@ Congrats! You have a working Kafka cluster running on Kubernetes. Next, a useful
 publish to Kafka using the Kafka hostname from above:
 
 ```
-afkacat -P -b 123.123.123.123:9092 -t mytopic
+kafkacat -P -b 123.123.123.123:9092 -t mytopic
 ```
 
 And then to listen to it, type:
