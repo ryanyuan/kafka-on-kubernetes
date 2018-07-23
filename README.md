@@ -6,6 +6,8 @@ This project enables deployment of a [Kafka](http://kafka.apache.org/) cluster u
 # Prerequisite
 You need to have a Kubernetes cluster running and the `kubectl` CLI tool in your path.
 
+# Step-by-step
+
 Given that Kafka depends on [Zookeeper](https://zookeeper.apache.org/) for
 [reasons](https://www.quora.com/What-is-the-actual-role-of-ZooKeeper-in-Kafka),
 we need to deploy Zookeeper before we create the Kafka cluster. 
