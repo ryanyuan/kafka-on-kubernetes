@@ -4,7 +4,8 @@ This project enables deployment of a [Kafka](http://kafka.apache.org/) cluster u
 [Kubernetes](http://kubernetes.io/) with [Zookeeper](https://zookeeper.apache.org/).
 
 # Prerequisite
-You need to have a Kubernetes cluster running and the `kubectl` CLI tool in your path.
+
+You need to have a Kubernetes cluster running and the [kubect CLI tool](https://kubernetes.io/docs/tasks/tools/install-kubectl/) in your path.
 
 # Step-by-step
 
